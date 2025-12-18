@@ -1,0 +1,3 @@
+[submodule "platform-shooter"]
+	path = platform-shooter
+	url = git@github.com:Octavian-Blignaut/platform-shooter.git
