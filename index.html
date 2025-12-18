@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FlowRoll Supply | Premium Jiu-Jitsu Rashguards</title>
+    <link rel="icon" href="https://8upload.com/image/590b6dd52e0e4ed8/Gemini_Generated_Image_hhoukhhoukhhoukh.png" />
   <style>
     :root {
       --bg: #f4f5f7;
@@ -57,6 +58,22 @@
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      display: block;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .footer-logo {
+      height: 64px;
+      width: auto;
+      display: block;
+      border-radius: 6px;
+      margin-left: 8px;
+      object-fit: contain;
     }
 
     .brand span {
@@ -397,6 +414,106 @@
       border: none;
     }
 
+    /* Sticky play-while-ordering panel */
+    .game-toggle {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(37,99,235,0.3);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .game-panel {
+      position: fixed;
+      right: 18px;
+      bottom: 76px;
+      width: 420px;
+      height: 300px;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 20px 60px rgba(2,6,23,0.55);
+      z-index: 59;
+      display: none;
+    }
+
+    .game-panel iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .game-panel { right: 12px; left: 12px; width: auto; height: 320px; bottom: 80px; }
+      .game-toggle { right: 12px; bottom: 12px; }
+    }
+
+    /* Crypto prices panel */
+    .crypto-panel {
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(250,250,252,0.96));
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .crypto-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      min-width: 160px;
+      background: rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.03);
+      flex: 1 1 200px;
+    }
+
+    .crypto-symbol {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .crypto-symbol .name {
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    .crypto-symbol .full {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .crypto-price {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .crypto-change {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .change-pos { color: #16a34a; }
+    .change-neg { color: #dc2626; }
+
     @media (max-width: 700px) {
       body {
         padding: 0 6px;
@@ -406,6 +523,8 @@
         flex-wrap: wrap;
         gap: 10px;
       }
+      .logo-img { height: 40px; }
+      .footer-logo { height: 48px; }
       .nav-links {
         width: 100%;
         justify-content: flex-start;
@@ -444,7 +563,10 @@
 <body>
   <header>
     <nav class="nav">
-      <div class="brand">FlowRoll <span>Supply</span></div>
+      <div class="brand">
+        <img class="logo-img" src="https://8upload.com/image/590b6dd52e0e4ed8/Gemini_Generated_Image_hhoukhhoukhhoukh.png" alt="FlowRoll Supply logo" />
+        <div style="display:inline-block; line-height:1">FlowRoll <span>Supply</span></div>
+      </div>
       <div class="pill">Built for and by jiujiteiros, tested on the mats</div>
       <div class="nav-links">
         <a href="#products">Shop</a>
@@ -580,6 +702,48 @@
       </div>
     </section>
 
+    <!-- Crypto trading window: live USD rates for BTC, ETH, SOL -->
+    <section id="crypto" class="section">
+      <div class="section-header">
+        <h2>Market prices</h2>
+        <p>Live USD rates for BTC · ETH · SOL</p>
+      </div>
+      <div class="card crypto-panel" id="crypto-panel">
+        <div class="crypto-row" data-id="bitcoin">
+          <div class="crypto-symbol">
+            <span class="name">BTC</span>
+            <span class="full">Bitcoin</span>
+          </div>
+          <div style="margin-left:auto; text-align:right;">
+            <div class="crypto-price" data-price>—</div>
+            <div class="crypto-change" data-change>—</div>
+          </div>
+        </div>
+
+        <div class="crypto-row" data-id="ethereum">
+          <div class="crypto-symbol">
+            <span class="name">ETH</span>
+            <span class="full">Ethereum</span>
+          </div>
+          <div style="margin-left:auto; text-align:right;">
+            <div class="crypto-price" data-price>—</div>
+            <div class="crypto-change" data-change>—</div>
+          </div>
+        </div>
+
+        <div class="crypto-row" data-id="solana">
+          <div class="crypto-symbol">
+            <span class="name">SOL</span>
+            <span class="full">Solana</span>
+          </div>
+          <div style="margin-left:auto; text-align:right;">
+            <div class="crypto-price" data-price>—</div>
+            <div class="crypto-change" data-change>—</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="tech" class="section">
       <div class="section-header">
         <h2>Built for relentless rounds</h2>
@@ -680,6 +844,12 @@
     </div>
   </main>
 
+  <!-- Play-while-ordering sticky button + panel -->
+  <button id="play-toggle" class="game-toggle" aria-expanded="false">Play while you order</button>
+  <div id="game-panel" class="game-panel" aria-hidden="true">
+    <iframe id="game-iframe" src="games/platform-shooter/index.html" title="Platform Shooter" allowfullscreen></iframe>
+  </div>
+
   <script>
     // Rotate hero image between two sources to showcase multiple visuals
     (() => {
@@ -747,12 +917,84 @@
         }
       });
     }
+
+    // Crypto price updater (CoinGecko simple price)
+    (function(){
+      const ids = ['bitcoin','ethereum','solana'];
+      const endpoint = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true';
+
+      async function fetchPrices(){
+        try{
+          const res = await fetch(endpoint);
+          if(!res.ok) throw new Error('Failed to fetch');
+          const data = await res.json();
+
+          ids.forEach(id => {
+            const row = document.querySelector(`.crypto-row[data-id="${id}"]`);
+            if(!row) return;
+            const priceEl = row.querySelector('[data-price]');
+            const changeEl = row.querySelector('[data-change]');
+            const price = data[id] && data[id].usd;
+            const change = data[id] && data[id].usd_24h_change;
+
+            if(priceEl){
+              priceEl.textContent = price ? ('$' + Number(price).toLocaleString(undefined,{maximumFractionDigits:2})) : '—';
+            }
+
+            if(changeEl){
+              const ch = (typeof change === 'number') ? change.toFixed(2) : null;
+              if(ch !== null){
+                changeEl.textContent = `${ch}% (24h)`;
+                changeEl.classList.toggle('change-pos', Number(ch) >= 0);
+                changeEl.classList.toggle('change-neg', Number(ch) < 0);
+              } else {
+                changeEl.textContent = '—';
+              }
+            }
+          });
+        }catch(err){
+          console.error('Crypto fetch error', err);
+        }
+      }
+
+      // initial + polling
+      fetchPrices();
+      setInterval(fetchPrices, 15000);
+    })();
+
+    // Toggle game panel (play while you order)
+    (function(){
+      const btn = document.getElementById('play-toggle');
+      const panel = document.getElementById('game-panel');
+      const iframe = document.getElementById('game-iframe');
+
+      if(!btn || !panel) return;
+
+      btn.addEventListener('click', () => {
+        const open = panel.style.display !== 'block';
+        panel.style.display = open ? 'block' : 'none';
+        btn.setAttribute('aria-expanded', String(open));
+        panel.setAttribute('aria-hidden', String(!open));
+
+        // reload iframe when opening to ensure input focus and fresh game
+        if(open && iframe){
+          try {
+            const src = iframe.src;
+            iframe.src = src;
+          } catch(e){ /* ignore */ }
+        }
+      });
+    })();
   </script>
 
   <footer>
-    <div>
-      <strong>FlowRoll Supply</strong><br />
-      Premium rashguards built for jiujitsu, tested by athletes.
+    <div style="display:flex; gap:10px; align-items:center;">
+      <img class="logo-img" src="https://8upload.com/image/590b6dd52e0e4ed8/Gemini_Generated_Image_hhoukhhoukhhoukh.png" alt="FlowRoll logo" style="height:36px;" />
+      <img class="footer-logo" src="https://8upload.com/image/d8917196e903ee28/Gemini_Generated_Image_ci7d75ci7d75ci7d.png" alt="Alternate FlowRoll logo" />
+      <div>
+        <strong>FlowRoll Supply</strong><br />
+        Premium rashguards built for jiujitsu, tested by athletes.
+      </div>
     </div>
     <div>
       <strong>Shop</strong><br />
