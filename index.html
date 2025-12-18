@@ -561,6 +561,8 @@
   </style>
 </head>
 <body>
+  <!-- Debug overlay (shows JS errors when present) -->
+  <div id="debug-overlay" style="position:fixed;left:12px;top:12px;z-index:9999;max-width:420px;display:none;background:rgba(0,0,0,0.75);color:#fff;padding:10px;border-radius:8px;font-family:monospace;font-size:13px;">JS error: <span id="debug-msg"></span></div>
   <header>
     <nav class="nav">
       <div class="brand">
@@ -851,6 +853,29 @@
   </div>
 
   <script>
+    // Global error handler to display runtime errors in-page for easier debugging
+    window.addEventListener('error', function(ev){
+      try{
+        const overlay = document.getElementById('debug-overlay');
+        const msg = document.getElementById('debug-msg');
+        if(overlay && msg){
+          overlay.style.display = 'block';
+          msg.textContent = (ev && ev.message) ? ev.message : String(ev);
+        }
+      }catch(e){/* ignore */}
+      console.error('Runtime error captured', ev.error || ev.message || ev);
+    });
+    window.addEventListener('unhandledrejection', function(ev){
+      try{
+        const overlay = document.getElementById('debug-overlay');
+        const msg = document.getElementById('debug-msg');
+        if(overlay && msg){
+          overlay.style.display = 'block';
+          msg.textContent = (ev && ev.reason) ? (ev.reason.message || String(ev.reason)) : 'UnhandledPromiseRejection';
+        }
+      }catch(e){/* ignore */}
+      console.error('Unhandled promise rejection', ev.reason || ev);
+    });
     // Rotate hero image between two sources to showcase multiple visuals
     (() => {
       const img = document.getElementById('hero-flip');
