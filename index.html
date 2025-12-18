@@ -353,17 +353,90 @@
       flex-wrap: wrap;
     }
 
+    .video-section {
+      margin-top: 40px;
+      padding: 24px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.82));
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background: #000;
+    }
+
+    .video-frame > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
     @media (max-width: 700px) {
-      .hero {
-        padding: 20px;
+      body {
+        padding: 0 6px;
       }
       .nav {
-        padding: 14px 16px;
+        padding: 12px 12px;
+        flex-wrap: wrap;
+        gap: 10px;
       }
       .nav-links {
         width: 100%;
         justify-content: flex-start;
         flex-wrap: wrap;
+        gap: 10px;
+      }
+      .hero {
+        padding: 18px;
+        gap: 18px;
+      }
+      .hero-visual img {
+        height: 360px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .pillset {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .video-section {
+        padding: 18px;
+        margin-top: 30px;
+      }
+      .video-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
     }
   </style>
@@ -420,6 +493,21 @@
             <div class="highlight">Lockstitch</div>
             <div>Reinforced flat-lock seams rated for 500+ sessions.</div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section">
+      <div class="section-header">
+        <h2>See FlowRoll in action</h2>
+        <p>Watch our rashguards perform on the mats.</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-frame">
+          <div id="video1"></div>
+        </div>
+        <div class="video-frame">
+          <div id="video2"></div>
         </div>
       </div>
     </section>
@@ -610,6 +698,55 @@
         img.src = sources[idx];
       }, 2200);
     })();
+
+    // YouTube video looping using IFrame API
+    let tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let players = {};
+    function onYouTubeIframeAPIReady() {
+      players['video1'] = new YT.Player('video1', {
+        videoId: 'JuBBIJ7adjM',
+        playerVars: {
+          'autoplay': 1,
+          'mute': 1,
+          'controls': 1,
+          'modestbranding': 1,
+          'rel': 0,
+          'loop': 1,
+          'playlist': 'JuBBIJ7adjM'
+        },
+        events: {
+          'onStateChange': function(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+              event.target.playVideo();
+            }
+          }
+        }
+      });
+
+      players['video2'] = new YT.Player('video2', {
+        videoId: 'EwYhm_Gz7Es',
+        playerVars: {
+          'autoplay': 1,
+          'mute': 1,
+          'controls': 1,
+          'modestbranding': 1,
+          'rel': 0,
+          'loop': 1,
+          'playlist': 'EwYhm_Gz7Es'
+        },
+        events: {
+          'onStateChange': function(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+              event.target.playVideo();
+            }
+          }
+        }
+      });
+    }
   </script>
 
   <footer>
