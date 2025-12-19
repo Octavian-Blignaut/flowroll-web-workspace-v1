@@ -1,0 +1,13 @@
+{
+  "name": "flowroll-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "test": "node tests/run-smoke.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "puppeteer": "^21.0.0"
+  }
+}

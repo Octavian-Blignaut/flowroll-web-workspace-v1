@@ -1047,6 +1047,54 @@
       <a href="#">Discord</a>
     </div>
   </footer>
+  </footer>
+
+  <script>
+    // Fallback helpers for when the page is opened via file://
+    (function(){
+      const isFile = (typeof location !== 'undefined' && location.protocol === 'file:');
+
+      function decodeProxy(src){
+        try{
+          const idx = src.indexOf('url=');
+          if(idx === -1) return null;
+          return decodeURIComponent(src.slice(idx + 4));
+        }catch(e){ return null; }
+      }
+
+      document.querySelectorAll('img').forEach(img => {
+        const src = img.getAttribute('src') || '';
+        if(src.startsWith('/proxy?')){
+          const direct = decodeProxy(src);
+          if(isFile && direct){ img.src = direct; }
+          img.addEventListener('error', () => {
+            if(direct && img.src !== direct){ img.src = direct; }
+          });
+        }
+      });
+
+      const gameIframe = document.getElementById('game-iframe');
+      if(isFile && gameIframe){
+        gameIframe.src = 'games/platform-shooter/index.html';
+      }
+
+      if(isFile){
+        const panel = document.getElementById('crypto-panel');
+        if(panel){
+          const note = document.createElement('div');
+          note.style = 'margin-top:8px;padding:8px;border-radius:8px;background:#fff3cd;color:#664d03;border:1px solid #ffeeba;font-size:13px;';
+          note.textContent = 'Dev note: running from file:// — live crypto prices may be blocked. Run `python3 dev_server.py` and open http://localhost:8000 to enable the proxy and live APIs.';
+          panel.appendChild(note);
+        }
+
+        const b = document.createElement('div');
+        b.textContent = 'Warning: opened over file:// — start the dev server to enable images, proxy, and live APIs: python3 dev_server.py';
+        b.style = 'position:fixed;left:12px;bottom:12px;z-index:99999;background:#fff6f6;color:#4a0b0b;padding:10px;border-radius:8px;border:1px solid #f5c6cb;font-family:Inter, system-ui, sans-serif;font-size:13px;';
+        document.body.appendChild(b);
+      }
+    })();
+  </script>
+
 </body>
 </html>
 
