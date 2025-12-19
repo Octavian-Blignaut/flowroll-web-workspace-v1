@@ -1,0 +1,63 @@
+name: Docker CI smoke tests
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ '**' ]
+
+jobs:
+  build-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t flowroll-web:test .
+
+      - name: Run container
+        run: |
+          docker run -d --rm -p 8000:8000 --name flowroll-test flowroll-web:test
+
+      - name: Wait for server
+        run: |
+          for i in {1..20}; do
+            if curl -sS http://localhost:8000/ >/dev/null 2>&1; then
+              echo "server ready"; break;
+            fi
+            sleep 1
+          done
+
+      - name: Smoke test - root page
+        run: |
+          curl -f http://localhost:8000/ -o /dev/null
+
+      - name: Smoke test - proxy image
+        run: |
+          curl -f "http://localhost:8000/proxy?url=https://labs.phaser.io/assets/sprites/ship.png" -o /dev/null
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install JS deps
+        run: |
+          npm ci
+
+      - name: Run ESLint
+        run: |
+          npm run lint
+
+      - name: Run Puppeteer smoke tests
+        env:
+          TEST_URL: http://localhost:8000/
+        run: |
+          npm test
+
+      - name: Stop container
+        if: always()
+        run: |
+          docker ps -q --filter name=flowroll-test | xargs -r docker stop
