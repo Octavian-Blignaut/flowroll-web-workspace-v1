@@ -38,24 +38,15 @@ jobs:
         run: |
           curl -f "http://localhost:8000/proxy?url=https://labs.phaser.io/assets/sprites/ship.png" -o /dev/null
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install JS deps
+      - name: Run ESLint inside container
         run: |
-          npm ci
+          docker exec flowroll-test npm run lint
 
-      - name: Run ESLint
-        run: |
-          npm run lint
-
-      - name: Run Puppeteer smoke tests
+      - name: Run Puppeteer smoke tests inside container
         env:
           TEST_URL: http://localhost:8000/
         run: |
-          npm test
+          docker exec flowroll-test node tests/run-smoke.js
 
       - name: Stop container
         if: always()
