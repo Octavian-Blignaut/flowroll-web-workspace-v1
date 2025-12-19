@@ -566,7 +566,7 @@
   <header>
     <nav class="nav">
       <div class="brand">
-        <img class="logo-img" src="https://8upload.com/image/590b6dd52e0e4ed8/Gemini_Generated_Image_hhoukhhoukhhoukh.png" alt="FlowRoll Supply logo" />
+        <img class="logo-img" src="/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2F590b6dd52e0e4ed8%2FGemini_Generated_Image_hhoukhhoukhhoukh.png" alt="FlowRoll Supply logo" />
         <div style="display:inline-block; line-height:1">FlowRoll <span>Supply</span></div>
       </div>
       <div class="pill">Built for and by jiujiteiros, tested on the mats</div>
@@ -607,7 +607,7 @@
       </div>
 
       <div class="hero-visual">
-        <img id="hero-flip" src="https://images.pexels.com/photos/7988954/pexels-photo-7988954.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Athletes practicing jiu-jitsu" />
+        <img id="hero-flip" src="/proxy?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F7988954%2Fpexels-photo-7988954.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26w%3D1200" alt="Athletes practicing jiu-jitsu" />
         <div class="stat-grid" style="margin-top: 14px;">
           <div class="stat">
             <div class="highlight">Duramesh™</div>
@@ -643,7 +643,7 @@
       </div>
       <div class="grid">
         <article class="card">
-          <img src="https://8upload.com/image/4fd9e5da88249e5b/Screenshot_2025-12-15_at_16.40.15.png" alt="Black rashguard front" />
+          <img src="/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2F4fd9e5da88249e5b%2FScreenshot_2025-12-15_at_16.40.15.png" alt="Black rashguard front" />
           <div class="tags">
             <span class="tag">Long Sleeve</span>
             <span class="tag">IBJJF Legal</span>
@@ -658,7 +658,7 @@
         </article>
 
         <article class="card">
-          <img src="https://8upload.com/image/4fd9e5da88249e5b/Screenshot_2025-12-15_at_16.40.15.png" alt="White rashguard front" />
+          <img src="/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2F4fd9e5da88249e5b%2FScreenshot_2025-12-15_at_16.40.15.png" alt="White rashguard front" />
           <div class="tags">
             <span class="tag">Short Sleeve</span>
             <span class="tag">Breathable</span>
@@ -673,7 +673,7 @@
         </article>
 
         <article class="card">
-          <img src="https://8upload.com/image/4fd9e5da88249e5b/Screenshot_2025-12-15_at_16.40.15.png" alt="Patterned rashguard" />
+          <img src="/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2F4fd9e5da88249e5b%2FScreenshot_2025-12-15_at_16.40.15.png" alt="Patterned rashguard" />
           <div class="tags">
             <span class="tag">Limited</span>
             <span class="tag">Sublimated</span>
@@ -688,7 +688,7 @@
         </article>
 
         <article class="card">
-          <img src="https://8upload.com/image/4fd9e5da88249e5b/Screenshot_2025-12-15_at_16.40.15.png" alt="Black and red rashguard" />
+          <img src="/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2F4fd9e5da88249e5b%2FScreenshot_2025-12-15_at_16.40.15.png" alt="Black and red rashguard" />
           <div class="tags">
             <span class="tag">Competition</span>
             <span class="tag">Compression</span>
@@ -853,25 +853,33 @@
   </div>
 
   <script>
-    // Global error handler to display runtime errors in-page for easier debugging
+    // Debug UI: only enable in development via ?debug=1
+    const ENABLE_DEBUG = typeof location !== 'undefined' && String(location.search || '').includes('debug=1');
+
+    // Global error handler to optionally display runtime errors in-page for easier debugging
     window.addEventListener('error', function(ev){
       try{
-        const overlay = document.getElementById('debug-overlay');
-        const msg = document.getElementById('debug-msg');
-        if(overlay && msg){
-          overlay.style.display = 'block';
-          msg.textContent = (ev && ev.message) ? ev.message : String(ev);
+        if (ENABLE_DEBUG) {
+          const overlay = document.getElementById('debug-overlay');
+          const msg = document.getElementById('debug-msg');
+          if(overlay && msg){
+            overlay.style.display = 'block';
+            msg.textContent = (ev && ev.message) ? ev.message : String(ev);
+          }
         }
       }catch(e){/* ignore */}
       console.error('Runtime error captured', ev.error || ev.message || ev);
     });
+
     window.addEventListener('unhandledrejection', function(ev){
       try{
-        const overlay = document.getElementById('debug-overlay');
-        const msg = document.getElementById('debug-msg');
-        if(overlay && msg){
-          overlay.style.display = 'block';
-          msg.textContent = (ev && ev.reason) ? (ev.reason.message || String(ev.reason)) : 'UnhandledPromiseRejection';
+        if (ENABLE_DEBUG) {
+          const overlay = document.getElementById('debug-overlay');
+          const msg = document.getElementById('debug-msg');
+          if(overlay && msg){
+            overlay.style.display = 'block';
+            msg.textContent = (ev && ev.reason) ? (ev.reason.message || String(ev.reason)) : 'UnhandledPromiseRejection';
+          }
         }
       }catch(e){/* ignore */}
       console.error('Unhandled promise rejection', ev.reason || ev);
@@ -881,11 +889,11 @@
       const img = document.getElementById('hero-flip');
       if (!img) return;
       const sources = [
-        'https://images.pexels.com/photos/7988954/pexels-photo-7988954.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://8upload.com/image/d1cb611765ffbeab/Gemini_Generated_Image_2b466v2b466v2b46.png',
-        'https://8upload.com/image/12eafc05203cf05e/Gemini_Generated_Image_7pbfa47pbfa47pbf.png',
-        'https://8upload.com/image/34b39869539a714a/Gemini_Generated_Image_phts7kphts7kphts.png',
-        'https://8upload.com/image/d9e68a91b5a20852/Gemini_Generated_Image_gf42jigf42jigf42.png',
+        '/proxy?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F7988954%2Fpexels-photo-7988954.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26w%3D1200',
+        '/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2Fd1cb611765ffbeab%2FGemini_Generated_Image_2b466v2b466v2b46.png',
+        '/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2F12eafc05203cf05e%2FGemini_Generated_Image_7pbfa47pbfa47pbf.png',
+        '/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2F34b39869539a714a%2FGemini_Generated_Image_phts7kphts7kphts.png',
+        '/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2Fd9e68a91b5a20852%2FGemini_Generated_Image_gf42jigf42jigf42.png',
       ];
       let idx = 0;
       setInterval(() => {
@@ -1014,8 +1022,8 @@
 
   <footer>
     <div style="display:flex; gap:10px; align-items:center;">
-      <img class="logo-img" src="https://8upload.com/image/590b6dd52e0e4ed8/Gemini_Generated_Image_hhoukhhoukhhoukh.png" alt="FlowRoll logo" style="height:36px;" />
-      <img class="footer-logo" src="https://8upload.com/image/d8917196e903ee28/Gemini_Generated_Image_ci7d75ci7d75ci7d.png" alt="Alternate FlowRoll logo" />
+      <img class="logo-img" src="/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2F590b6dd52e0e4ed8%2FGemini_Generated_Image_hhoukhhoukhhoukh.png" alt="FlowRoll logo" style="height:36px;" />
+      <img class="footer-logo" src="/proxy?url=https%3A%2F%2F8upload.com%2Fimage%2Fd8917196e903ee28%2FGemini_Generated_Image_ci7d75ci7d75ci7d.png" alt="Alternate FlowRoll logo" />
       <div>
         <strong>FlowRoll Supply</strong><br />
         Premium rashguards built for jiujitsu, tested by athletes.
