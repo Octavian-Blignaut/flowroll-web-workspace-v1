@@ -143,4 +143,4 @@ const config = {
     scene: Example
 };
 
-const game = new Phaser.Game(config);
+new Phaser.Game(config);

@@ -9,6 +9,10 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "globals": {
+    "Phaser": "readonly",
+    "YT": "readonly"
+  },
   "rules": {
     "no-unused-vars": ["warn"],
     "no-console": "off"
