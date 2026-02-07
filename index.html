@@ -44,10 +44,10 @@
     .nav {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 18px 22px;
+      padding: 8px 12px;
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 8px;
     }
 
     .brand {
@@ -134,15 +134,15 @@
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 22px 90px;
+      padding: 10px 12px 40px;
     }
 
     .hero {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      gap: 12px;
       align-items: center;
-      padding: 26px;
+      padding: 10px;
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.82));
       border: 1px solid #e2e8f0;
       border-radius: 22px;
@@ -151,12 +151,12 @@
 
     .hero h1 {
       font-size: clamp(2.2rem, 4vw, 3rem);
-      margin: 0 0 12px;
+      margin: 0 0 4px;
     }
 
     .hero p {
       color: var(--muted);
-      margin: 0 0 22px;
+      margin: 0 0 8px;
     }
 
     .badge {
@@ -183,7 +183,7 @@
       background: radial-gradient(circle at 30% 30%, rgba(37, 99, 235, 0.12), transparent 50%),
                   linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(243, 244, 246, 0.96));
       border-radius: 18px;
-      padding: 28px;
+      padding: 6px;
       border: 1px solid #e2e8f0;
     }
 
@@ -206,7 +206,7 @@
       background: rgba(0, 0, 0, 0.02);
       border: 1px solid #e2e8f0;
       border-radius: 14px;
-      padding: 14px;
+      padding: 6px;
     }
 
     .stat h3 {
@@ -216,7 +216,7 @@
     }
 
     .section {
-      margin-top: 60px;
+      margin-top: 20px;
     }
 
     .section-header {
@@ -247,11 +247,11 @@
       background: var(--card);
       border: 1px solid #e5e7eb;
       border-radius: 18px;
-      padding: 18px;
+      padding: 8px;
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 6px;
     }
 
     .card img {
@@ -293,9 +293,9 @@
       background: rgba(0, 0, 0, 0.03);
       border: 1px solid #e2e8f0;
       border-radius: 14px;
-      padding: 14px;
+      padding: 6px;
       display: flex;
-      gap: 12px;
+      gap: 6px;
       align-items: center;
     }
 
@@ -319,27 +319,27 @@
     }
 
     .cta {
-      margin-top: 48px;
-      padding: 22px;
+      margin-top: 20px;
+      padding: 10px;
       border-radius: 18px;
       border: 1px solid #e2e8f0;
       background: linear-gradient(120deg, rgba(37, 99, 235, 0.06), rgba(255, 255, 255, 0.96));
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 8px;
       align-items: center;
       justify-content: space-between;
     }
 
     footer {
       max-width: 1200px;
-      margin: 40px auto 24px;
-      padding: 0 22px;
+      margin: 20px auto 10px;
+      padding: 0 12px;
       color: var(--muted);
       font-size: 0.95rem;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
+      gap: 8px;
     }
 
     footer a {
@@ -371,8 +371,8 @@
     }
 
     .video-section {
-      margin-top: 40px;
-      padding: 24px;
+      margin-top: 20px;
+      padding: 10px;
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.82));
       border: 1px solid #e2e8f0;
       border-radius: 22px;
@@ -460,28 +460,55 @@
     /* Crypto prices panel */
     .crypto-panel {
       margin-top: 18px;
-      padding: 12px;
+      padding: 16px;
       border-radius: 14px;
       border: 1px solid #e5e7eb;
       background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(250,250,252,0.96));
       box-shadow: var(--shadow);
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
     }
 
     .crypto-row {
       display: flex;
-      gap: 12px;
-      align-items: center;
-      padding: 10px 12px;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
       border-radius: 12px;
-      min-width: 160px;
-      background: rgba(0,0,0,0.02);
-      border: 1px solid rgba(0,0,0,0.03);
-      flex: 1 1 200px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(248,249,250,0.6));
+      border: 1px solid rgba(37,99,235,0.08);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .crypto-row:hover {
+      border-color: rgba(37,99,235,0.2);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.1);
+      transform: translateY(-2px);
+    }
+
+    .crypto-row::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .crypto-row.updated::before {
+      opacity: 1;
+    }
+
+    .crypto-row-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .crypto-symbol {
@@ -493,26 +520,107 @@
     .crypto-symbol .name {
       font-weight: 800;
       font-size: 1.05rem;
+      letter-spacing: 0.02em;
     }
 
     .crypto-symbol .full {
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+    }
+
+    .crypto-sparkline {
+      height: 24px;
+      min-width: 60px;
+      margin-left: auto;
+    }
+
+    .crypto-price-section {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .crypto-price {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 900;
       color: var(--accent);
     }
 
-    .crypto-change {
-      font-weight: 700;
-      font-size: 0.9rem;
+    .crypto-price-small {
+      font-size: 0.85rem;
+      color: var(--muted);
     }
 
-    .change-pos { color: #16a34a; }
-    .change-neg { color: #dc2626; }
+    .crypto-changes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .change-item {
+      padding: 4px 6px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.02);
+    }
+
+    .change-label {
+      color: var(--muted);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+    }
+
+    .change-value {
+      display: block;
+      margin-top: 2px;
+      font-weight: 800;
+    }
+
+    .change-pos { color: #16a34a; background: rgba(22, 163, 74, 0.1) !important; }
+    .change-neg { color: #dc2626; background: rgba(220, 38, 38, 0.1) !important; }
+    .change-neutral { color: var(--muted); }
+
+    .crypto-market-cap {
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding-top: 4px;
+      border-top: 1px solid rgba(0,0,0,0.04);
+      margin-top: 4px;
+    }
+
+    .crypto-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .crypto-filter-btn {
+      padding: 6px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      background: white;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .crypto-filter-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .crypto-filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     @media (max-width: 700px) {
       body {
@@ -556,6 +664,31 @@
       .video-grid {
         grid-template-columns: 1fr;
         gap: 16px;
+      }
+      .crypto-panel {
+        grid-template-columns: 1fr;
+      }
+      .crypto-row {
+        grid-template-columns: 1fr;
+      }
+      .crypto-row-header {
+        flex-direction: column;
+      }
+      .crypto-sparkline {
+        width: 100%;
+        height: 32px;
+        margin-left: 0;
+        margin-top: 8px;
+      }
+      .crypto-changes {
+        grid-template-columns: 1fr 1fr;
+      }
+      .crypto-filters {
+        gap: 6px;
+      }
+      .crypto-filter-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -704,44 +837,218 @@
       </div>
     </section>
 
-    <!-- Crypto trading window: live USD rates for BTC, ETH, SOL -->
+    <!-- Crypto trading window: live USD rates for major cryptocurrencies -->
     <section id="crypto" class="section">
       <div class="section-header">
-        <h2>Market prices</h2>
-        <p>Live USD rates for BTC · ETH · SOL</p>
+        <h2>Crypto markets</h2>
+        <p>Live prices tracked in USD & ZAR</p>
+      </div>
+      <div style="text-align:center; margin-bottom:16px;">
+        <div class="crypto-filters" id="crypto-filters">
+          <button class="crypto-filter-btn active" data-filter="all">All coins</button>
+          <button class="crypto-filter-btn" data-filter="top5">Top 5</button>
+          <button class="crypto-filter-btn" data-filter="favorites">Favorites</button>
+        </div>
       </div>
       <div class="card crypto-panel" id="crypto-panel">
-        <div class="crypto-row" data-id="bitcoin">
-          <div class="crypto-symbol">
-            <span class="name">BTC</span>
-            <span class="full">Bitcoin</span>
+        <div class="crypto-row" data-id="bitcoin" data-rank="1">
+          <div class="crypto-row-header">
+            <div class="crypto-symbol">
+              <span class="name">₿ BTC</span>
+              <span class="full">Bitcoin</span>
+            </div>
+            <canvas class="crypto-sparkline" data-id="bitcoin-sparkline"></canvas>
           </div>
-          <div style="margin-left:auto; text-align:right;">
+          <div class="crypto-price-section">
             <div class="crypto-price" data-price>—</div>
-            <div class="crypto-change" data-change>—</div>
+            <div class="crypto-price-small" data-price-zar>—</div>
           </div>
+          <div class="crypto-changes">
+            <div class="change-item">
+              <div class="change-label">24h</div>
+              <div class="change-value" data-change-24h>—</div>
+            </div>
+            <div class="change-item">
+              <div class="change-label">7d</div>
+              <div class="change-value" data-change-7d>—</div>
+            </div>
+          </div>
+          <div class="crypto-market-cap" data-market-cap>Market cap: —</div>
         </div>
 
-        <div class="crypto-row" data-id="ethereum">
-          <div class="crypto-symbol">
-            <span class="name">ETH</span>
-            <span class="full">Ethereum</span>
+        <div class="crypto-row" data-id="ethereum" data-rank="2">
+          <div class="crypto-row-header">
+            <div class="crypto-symbol">
+              <span class="name">Ξ ETH</span>
+              <span class="full">Ethereum</span>
+            </div>
+            <canvas class="crypto-sparkline" data-id="ethereum-sparkline"></canvas>
           </div>
-          <div style="margin-left:auto; text-align:right;">
+          <div class="crypto-price-section">
             <div class="crypto-price" data-price>—</div>
-            <div class="crypto-change" data-change>—</div>
+            <div class="crypto-price-small" data-price-zar>—</div>
           </div>
+          <div class="crypto-changes">
+            <div class="change-item">
+              <div class="change-label">24h</div>
+              <div class="change-value" data-change-24h>—</div>
+            </div>
+            <div class="change-item">
+              <div class="change-label">7d</div>
+              <div class="change-value" data-change-7d>—</div>
+            </div>
+          </div>
+          <div class="crypto-market-cap" data-market-cap>Market cap: —</div>
         </div>
 
-        <div class="crypto-row" data-id="solana">
-          <div class="crypto-symbol">
-            <span class="name">SOL</span>
-            <span class="full">Solana</span>
+        <div class="crypto-row" data-id="solana" data-rank="5">
+          <div class="crypto-row-header">
+            <div class="crypto-symbol">
+              <span class="name">◎ SOL</span>
+              <span class="full">Solana</span>
+            </div>
+            <canvas class="crypto-sparkline" data-id="solana-sparkline"></canvas>
           </div>
-          <div style="margin-left:auto; text-align:right;">
+          <div class="crypto-price-section">
             <div class="crypto-price" data-price>—</div>
-            <div class="crypto-change" data-change>—</div>
+            <div class="crypto-price-small" data-price-zar>—</div>
           </div>
+          <div class="crypto-changes">
+            <div class="change-item">
+              <div class="change-label">24h</div>
+              <div class="change-value" data-change-24h>—</div>
+            </div>
+            <div class="change-item">
+              <div class="change-label">7d</div>
+              <div class="change-value" data-change-7d>—</div>
+            </div>
+          </div>
+          <div class="crypto-market-cap" data-market-cap>Market cap: —</div>
+        </div>
+
+        <div class="crypto-row" data-id="cardano" data-rank="3">
+          <div class="crypto-row-header">
+            <div class="crypto-symbol">
+              <span class="name">₳ ADA</span>
+              <span class="full">Cardano</span>
+            </div>
+            <canvas class="crypto-sparkline" data-id="cardano-sparkline"></canvas>
+          </div>
+          <div class="crypto-price-section">
+            <div class="crypto-price" data-price>—</div>
+            <div class="crypto-price-small" data-price-zar>—</div>
+          </div>
+          <div class="crypto-changes">
+            <div class="change-item">
+              <div class="change-label">24h</div>
+              <div class="change-value" data-change-24h>—</div>
+            </div>
+            <div class="change-item">
+              <div class="change-label">7d</div>
+              <div class="change-value" data-change-7d>—</div>
+            </div>
+          </div>
+          <div class="crypto-market-cap" data-market-cap>Market cap: —</div>
+        </div>
+
+        <div class="crypto-row" data-id="polkadot" data-rank="12">
+          <div class="crypto-row-header">
+            <div class="crypto-symbol">
+              <span class="name">● DOT</span>
+              <span class="full">Polkadot</span>
+            </div>
+            <canvas class="crypto-sparkline" data-id="polkadot-sparkline"></canvas>
+          </div>
+          <div class="crypto-price-section">
+            <div class="crypto-price" data-price>—</div>
+            <div class="crypto-price-small" data-price-zar>—</div>
+          </div>
+          <div class="crypto-changes">
+            <div class="change-item">
+              <div class="change-label">24h</div>
+              <div class="change-value" data-change-24h>—</div>
+            </div>
+            <div class="change-item">
+              <div class="change-label">7d</div>
+              <div class="change-value" data-change-7d>—</div>
+            </div>
+          </div>
+          <div class="crypto-market-cap" data-market-cap>Market cap: —</div>
+        </div>
+
+        <div class="crypto-row" data-id="ripple" data-rank="6">
+          <div class="crypto-row-header">
+            <div class="crypto-symbol">
+              <span class="name">✕ XRP</span>
+              <span class="full">Ripple</span>
+            </div>
+            <canvas class="crypto-sparkline" data-id="ripple-sparkline"></canvas>
+          </div>
+          <div class="crypto-price-section">
+            <div class="crypto-price" data-price>—</div>
+            <div class="crypto-price-small" data-price-zar>—</div>
+          </div>
+          <div class="crypto-changes">
+            <div class="change-item">
+              <div class="change-label">24h</div>
+              <div class="change-value" data-change-24h>—</div>
+            </div>
+            <div class="change-item">
+              <div class="change-label">7d</div>
+              <div class="change-value" data-change-7d>—</div>
+            </div>
+          </div>
+          <div class="crypto-market-cap" data-market-cap>Market cap: —</div>
+        </div>
+
+        <div class="crypto-row" data-id="litecoin" data-rank="14">
+          <div class="crypto-row-header">
+            <div class="crypto-symbol">
+              <span class="name">Ł LTC</span>
+              <span class="full">Litecoin</span>
+            </div>
+            <canvas class="crypto-sparkline" data-id="litecoin-sparkline"></canvas>
+          </div>
+          <div class="crypto-price-section">
+            <div class="crypto-price" data-price>—</div>
+            <div class="crypto-price-small" data-price-zar>—</div>
+          </div>
+          <div class="crypto-changes">
+            <div class="change-item">
+              <div class="change-label">24h</div>
+              <div class="change-value" data-change-24h>—</div>
+            </div>
+            <div class="change-item">
+              <div class="change-label">7d</div>
+              <div class="change-value" data-change-7d>—</div>
+            </div>
+          </div>
+          <div class="crypto-market-cap" data-market-cap>Market cap: —</div>
+        </div>
+
+        <div class="crypto-row" data-id="dogecoin" data-rank="10">
+          <div class="crypto-row-header">
+            <div class="crypto-symbol">
+              <span class="name">🐕 DOGE</span>
+              <span class="full">Dogecoin</span>
+            </div>
+            <canvas class="crypto-sparkline" data-id="dogecoin-sparkline"></canvas>
+          </div>
+          <div class="crypto-price-section">
+            <div class="crypto-price" data-price>—</div>
+            <div class="crypto-price-small" data-price-zar>—</div>
+          </div>
+          <div class="crypto-changes">
+            <div class="change-item">
+              <div class="change-label">24h</div>
+              <div class="change-value" data-change-24h>—</div>
+            </div>
+            <div class="change-item">
+              <div class="change-label">7d</div>
+              <div class="change-value" data-change-7d>—</div>
+            </div>
+          </div>
+          <div class="crypto-market-cap" data-market-cap>Market cap: —</div>
         </div>
       </div>
     </section>
@@ -951,48 +1258,159 @@
       });
     }
 
-    // Crypto price updater (CoinGecko simple price)
+    // Enhanced Crypto price updater with sparklines, 7d change, market cap, and ZAR conversion
     (function(){
-      const ids = ['bitcoin','ethereum','solana'];
-      const endpoint = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true';
+      const ids = ['bitcoin','ethereum','solana','cardano','polkadot','ripple','litecoin','dogecoin'];
+      const baseEndpoint = 'https://api.coingecko.com/api/v3/simple/price';
+      const usdEndpoint = `${baseEndpoint}?ids=${ids.join(',')}&vs_currencies=usd,zar&include_24hr_change=true&include_7d_change=true&include_market_cap=true`;
+      
+      // Store price history for sparklines
+      const priceHistory = {};
+      ids.forEach(id => { priceHistory[id] = []; });
 
-      async function fetchPrices(){
-        try{
-          const res = await fetch(endpoint);
-          if(!res.ok) throw new Error('Failed to fetch');
+      // Helper: format currency
+      function formatPrice(value, decimals = 2) {
+        if (value === null || value === undefined) return '—';
+        return Number(value).toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: decimals });
+      }
+
+      // Helper: format large numbers (market cap)
+      function formatMarketCap(value) {
+        if (!value) return '—';
+        if (value >= 1e9) return '$' + (value / 1e9).toFixed(1) + 'B';
+        if (value >= 1e6) return '$' + (value / 1e6).toFixed(1) + 'M';
+        return '$' + formatPrice(value, 0);
+      }
+
+      // Helper: draw sparkline
+      function drawSparkline(canvasId, prices) {
+        const canvas = document.querySelector(`canvas[data-id="${canvasId}"]`);
+        if (!canvas || !prices || prices.length < 2) return;
+        
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width = 80;
+        const h = canvas.height = 24;
+        
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+        const range = max - min || 1;
+        
+        ctx.clearRect(0, 0, w, h);
+        ctx.strokeStyle = prices[prices.length - 1] >= prices[0] ? '#16a34a' : '#dc2626';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        
+        prices.forEach((price, i) => {
+          const x = (i / (prices.length - 1)) * w;
+          const y = h - ((price - min) / range) * h;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
+        
+        ctx.stroke();
+      }
+
+      async function fetchPrices() {
+        try {
+          const res = await fetch(usdEndpoint);
+          if (!res.ok) throw new Error('Failed to fetch');
           const data = await res.json();
 
           ids.forEach(id => {
             const row = document.querySelector(`.crypto-row[data-id="${id}"]`);
-            if(!row) return;
-            const priceEl = row.querySelector('[data-price]');
-            const changeEl = row.querySelector('[data-change]');
-            const price = data[id] && data[id].usd;
-            const change = data[id] && data[id].usd_24h_change;
+            if (!row) return;
 
-            if(priceEl){
-              priceEl.textContent = price ? ('$' + Number(price).toLocaleString(undefined,{maximumFractionDigits:2})) : '—';
+            const priceUsd = data[id]?.usd;
+            const priceZar = data[id]?.zar;
+            const change24h = data[id]?.usd_24h_change;
+            const change7d = data[id]?.usd_7d_change;
+            const marketCap = data[id]?.usd_market_cap;
+
+            // Update main price (USD)
+            const priceEl = row.querySelector('[data-price]');
+            if (priceEl) {
+              priceEl.textContent = priceUsd ? '$' + formatPrice(priceUsd) : '—';
             }
 
-            if(changeEl){
-              const ch = (typeof change === 'number') ? change.toFixed(2) : null;
-              if(ch !== null){
-                changeEl.textContent = `${ch}% (24h)`;
-                changeEl.classList.toggle('change-pos', Number(ch) >= 0);
-                changeEl.classList.toggle('change-neg', Number(ch) < 0);
+            // Update ZAR price
+            const priceZarEl = row.querySelector('[data-price-zar]');
+            if (priceZarEl) {
+              priceZarEl.textContent = priceZar ? 'ZAR ' + formatPrice(priceZar, 0) : '—';
+            }
+
+            // Update 24h change
+            const change24hEl = row.querySelector('[data-change-24h]');
+            if (change24hEl) {
+              const ch = typeof change24h === 'number' ? change24h.toFixed(2) : null;
+              if (ch !== null) {
+                change24hEl.textContent = `${ch}%`;
+                change24hEl.parentElement.className = 'change-item ' + (Number(ch) >= 0 ? 'change-pos' : 'change-neg');
               } else {
-                changeEl.textContent = '—';
+                change24hEl.textContent = '—';
               }
             }
+
+            // Update 7d change
+            const change7dEl = row.querySelector('[data-change-7d]');
+            if (change7dEl) {
+              const ch = typeof change7d === 'number' ? change7d.toFixed(2) : null;
+              if (ch !== null) {
+                change7dEl.textContent = `${ch}%`;
+                change7dEl.parentElement.className = 'change-item ' + (Number(ch) >= 0 ? 'change-pos' : 'change-neg');
+              } else {
+                change7dEl.textContent = '—';
+              }
+            }
+
+            // Update market cap
+            const mcEl = row.querySelector('[data-market-cap]');
+            if (mcEl) {
+              mcEl.textContent = 'Market cap: ' + formatMarketCap(marketCap);
+            }
+
+            // Store price for sparkline
+            if (priceUsd) {
+              priceHistory[id].push(priceUsd);
+              if (priceHistory[id].length > 20) {
+                priceHistory[id].shift();
+              }
+              drawSparkline(`${id}-sparkline`, priceHistory[id]);
+            }
+
+            // Highlight recent update
+            row.classList.add('updated');
+            setTimeout(() => row.classList.remove('updated'), 600);
           });
-        }catch(err){
+        } catch (err) {
           console.error('Crypto fetch error', err);
         }
       }
 
-      // initial + polling
+      // Setup filter buttons
+      const filterBtns = document.querySelectorAll('[data-filter]');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          const rows = document.querySelectorAll('.crypto-row');
+          
+          rows.forEach(row => {
+            if (filter === 'all') {
+              row.style.display = '';
+            } else if (filter === 'top5') {
+              const rank = parseInt(row.dataset.rank);
+              row.style.display = rank <= 5 ? '' : 'none';
+            } else if (filter === 'favorites') {
+              row.style.display = ['bitcoin', 'ethereum', 'solana'].includes(row.dataset.id) ? '' : 'none';
+            }
+          });
+        });
+      });
+
+      // Initial fetch + polling every 30 seconds
       fetchPrices();
-      setInterval(fetchPrices, 15000);
+      setInterval(fetchPrices, 30000);
     })();
 
     // Toggle game panel (play while you order)
