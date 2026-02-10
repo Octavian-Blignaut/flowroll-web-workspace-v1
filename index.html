@@ -622,6 +622,91 @@
       color: var(--accent);
     }
 
+    /* Checkout and Payment Methods */
+    .checkout-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .payment-methods {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .payment-btn {
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .payment-btn:hover {
+      border-color: var(--accent);
+      background: rgba(37,99,235,0.02);
+    }
+
+    .payment-btn.active {
+      border-color: var(--accent);
+      background: rgba(37,99,235,0.08);
+      box-shadow: 0 2px 8px rgba(37,99,235,0.15);
+    }
+
+    .payment-section {
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .crypto-selector {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 8px;
+    }
+
+    .crypto-option {
+      padding: 8px 10px;
+      border: 2px solid #e5e7eb;
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .crypto-option:hover {
+      border-color: var(--accent);
+      background: rgba(37,99,235,0.05);
+    }
+
+    .crypto-option.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .copy-btn {
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .copy-btn:active {
+      transform: scale(0.95);
+    }
+
     @media (max-width: 700px) {
       body {
         padding: 0 6px;
@@ -690,6 +775,15 @@
         padding: 5px 10px;
         font-size: 0.8rem;
       }
+      .crypto-selector {
+        grid-template-columns: 1fr 1fr;
+      }
+      .payment-methods {
+        grid-template-columns: 1fr;
+      }
+      .checkout-card {
+        margin-bottom: 12px;
+      }
     }
   </style>
 </head>
@@ -706,9 +800,10 @@
       <div class="nav-links">
         <a href="#products">Shop</a>
         <a href="#tech">Tech</a>
+        <a href="#checkout">Checkout</a>
         <a href="#sizing">Sizing</a>
         <a href="#about">About</a>
-        <a class="btn" href="#products">Shop Rashguards</a>
+        <a class="btn" href="#checkout">Buy Now</a>
       </div>
     </nav>
   </header>
@@ -1090,6 +1185,132 @@
       </div>
     </section>
 
+    <section id="checkout" class="section">
+      <div class="section-header">
+        <h2>Secure checkout</h2>
+        <p>Pay with crypto, fiat, or bank transfer</p>
+      </div>
+      <div class="grid">
+        <div class="card checkout-card">
+          <h3>Order summary</h3>
+          <div style="background: rgba(0,0,0,0.02); border-radius: 8px; padding: 12px; margin: 12px 0;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem;">
+              <span>Shadow Long Sleeve</span>
+              <span>ZAR 900</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.05); font-weight: 600;">
+              <span>Total</span>
+              <span class="total-price" data-zar="900">ZAR 900</span>
+            </div>
+          </div>
+          <div style="color: var(--muted); font-size: 0.85rem; margin: 12px 0;">
+            <strong>Shipping:</strong> Free for orders over ZAR 2000<br/>
+            <strong>Processing:</strong> 1-2 business days
+          </div>
+        </div>
+
+        <div class="card checkout-card">
+          <h3>Payment method</h3>
+          <div class="payment-methods">
+            <button class="payment-btn active" data-method="crypto">
+              <div style="font-weight: 700;">₿ Cryptocurrency</div>
+              <div style="font-size: 0.8rem; color: var(--muted);">Bitcoin, Ethereum, Solana</div>
+            </button>
+            <button class="payment-btn" data-method="card">
+              <div style="font-weight: 700;">💳 Card</div>
+              <div style="font-size: 0.8rem; color: var(--muted);">Visa, Mastercard</div>
+            </button>
+            <button class="payment-btn" data-method="bank">
+              <div style="font-weight: 700;">🏦 Bank Transfer</div>
+              <div style="font-size: 0.8rem; color: var(--muted);">Direct deposit (ZAR)</div>
+            </button>
+          </div>
+
+          <!-- Crypto payment section -->
+          <div id="crypto-payment" class="payment-section active">
+            <div style="margin: 16px 0;">
+              <label style="display: block; font-weight: 600; margin-bottom: 8px;">Select currency</label>
+              <div class="crypto-selector">
+                <button class="crypto-option active" data-crypto="bitcoin" data-symbol="₿ BTC">Bitcoin</button>
+                <button class="crypto-option" data-crypto="ethereum" data-symbol="Ξ ETH">Ethereum</button>
+                <button class="crypto-option" data-crypto="solana" data-symbol="◎ SOL">Solana</button>
+                <button class="crypto-option" data-crypto="litecoin" data-symbol="Ł LTC">Litecoin</button>
+              </div>
+            </div>
+
+            <div style="background: #f0f7ff; border: 1px solid rgba(37,99,235,0.2); border-radius: 8px; padding: 12px; margin: 12px 0;">
+              <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.02em; font-weight: 700; margin-bottom: 4px;">Amount due</div>
+              <div style="font-size: 1.4rem; font-weight: 900; color: var(--accent); margin-bottom: 4px;">
+                <span class="crypto-amount" data-amount="0.0001">0.0001</span> <span class="crypto-symbol-display">₿ BTC</span>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--muted);">≈ ZAR 900</div>
+            </div>
+
+            <div style="background: #f5f5f5; border-radius: 8px; padding: 12px; margin: 12px 0; display: flex; gap: 12px; align-items: center;">
+              <canvas id="qr-code" style="width: 100px; height: 100px; border-radius: 4px; background: white; padding: 4px;"></canvas>
+              <div style="flex: 1;">
+                <div style="font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; font-weight: 700;">Wallet address</div>
+                <div style="font-family: monospace; font-size: 0.8rem; background: white; padding: 8px; border-radius: 4px; word-break: break-all; border: 1px solid #e5e7eb;">
+                  <span class="wallet-address">1A1z7agoat2PqeD4Py9c19SNRWBDvp7oXW</span>
+                  <button class="copy-btn" style="margin-left: 8px; padding: 4px 8px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: 600;">Copy</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: #fffbea; border: 1px solid #ffd966; border-radius: 8px; padding: 10px; margin: 12px 0; font-size: 0.85rem; color: #7d6608;">
+              <strong>⏱️ Payment expires in:</strong> <span id="timer" style="font-weight: 700;">10:00</span><br/>
+              Send exactly <strong><span class="crypto-amount">0.0001</span></strong> <strong><span class="crypto-symbol-display">BTC</span></strong> to confirm payment.
+            </div>
+
+            <button class="btn" style="width: 100%; margin-top: 12px;">I've sent payment</button>
+          </div>
+
+          <!-- Card payment section (hidden) -->
+          <div id="card-payment" class="payment-section" style="display: none;">
+            <div style="margin: 12px 0;">
+              <label style="display: block; font-weight: 600; margin-bottom: 6px;">Card holder name</label>
+              <input type="text" placeholder="Your name" style="width: 100%; padding: 8px; border: 1px solid #e5e7eb; border-radius: 6px;">
+            </div>
+            <div style="margin: 12px 0;">
+              <label style="display: block; font-weight: 600; margin-bottom: 6px;">Card number</label>
+              <input type="text" placeholder="1234 5678 9012 3456" style="width: 100%; padding: 8px; border: 1px solid #e5e7eb; border-radius: 6px;">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div>
+                <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;">Expiry</label>
+                <input type="text" placeholder="MM/YY" style="width: 100%; padding: 8px; border: 1px solid #e5e7eb; border-radius: 6px;">
+              </div>
+              <div>
+                <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;">CVV</label>
+                <input type="text" placeholder="123" style="width: 100%; padding: 8px; border: 1px solid #e5e7eb; border-radius: 6px;">
+              </div>
+            </div>
+            <button class="btn" style="width: 100%; margin-top: 12px;">Complete purchase</button>
+          </div>
+
+          <!-- Bank transfer section (hidden) -->
+          <div id="bank-payment" class="payment-section" style="display: none;">
+            <div style="background: #f5f5f5; border-radius: 8px; padding: 12px; margin: 12px 0;">
+              <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 8px;">Transfer details</div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem;">
+                <strong>Account:</strong> <span style="font-family: monospace;">FLOWROLL1234567</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem;">
+                <strong>Bank:</strong> <span>Nedbank ZA</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                <strong>Amount:</strong> <span style="font-weight: 700; color: var(--accent);">ZAR 900</span>
+              </div>
+            </div>
+            <div style="background: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; padding: 10px; font-size: 0.85rem; color: #664d03; margin: 12px 0;">
+              Email a proof of transfer to <strong>payments@flowrollsupply.com</strong> to activate your order immediately.
+            </div>
+            <button class="btn" style="width: 100%; margin-top: 12px;">I'll send proof via email</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="sizing" class="section">
       <div class="section-header">
         <h2>Fit guide</h2>
@@ -1411,6 +1632,153 @@
       // Initial fetch + polling every 30 seconds
       fetchPrices();
       setInterval(fetchPrices, 30000);
+    })();
+
+    // Crypto Payment Checkout System
+    (function(){
+      const cryptoPrices = {}; // Store latest prices
+      const PRICES_ZAR = {
+        'bitcoin': null,
+        'ethereum': null,
+        'solana': null,
+        'litecoin': null
+      };
+      
+      const DEMO_AMOUNTS = {
+        'bitcoin': 0.000125,
+        'ethereum': 0.0025,
+        'solana': 0.05,
+        'litecoin': 0.15
+      };
+
+      // QR Code generator using canvas
+      function generateQRCode(text, canvasId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        
+        // Simple placeholder QR - in production use qrcode.js library
+        const ctx = canvas.getContext('2d');
+        canvas.width = 100;
+        canvas.height = 100;
+        
+        // Draw simple pattern (placeholder)
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, 100, 100);
+        ctx.fillStyle = '#000';
+        
+        // Draw border
+        for(let i = 0; i < 10; i++) {
+          for(let j = 0; j < 10; j++) {
+            if(Math.random() > 0.5) {
+              ctx.fillRect(i * 10, j * 10, 10, 10);
+            }
+          }
+        }
+        
+        // Text in center
+        ctx.fillStyle = 'white';
+        ctx.font = '10px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(text.substring(0, 8), 50, 50);
+      }
+
+      // Timer countdown
+      function startTimer() {
+        let seconds = 600; // 10 minutes
+        const timerEl = document.getElementById('timer');
+        if (!timerEl) return;
+        
+        const interval = setInterval(() => {
+          seconds--;
+          const mins = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+          timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+          
+          if (seconds <= 0) {
+            clearInterval(interval);
+            timerEl.textContent = 'Expired';
+          }
+        }, 1000);
+      }
+
+      // Update crypto amount based on selected coin
+      function updateCryptoAmount(cryptoId) {
+        const amount = DEMO_AMOUNTS[cryptoId] || 0.0001;
+        document.querySelectorAll('.crypto-amount').forEach(el => {
+          el.textContent = amount.toFixed(cryptoId === 'bitcoin' ? 6 : cryptoId === 'ethereum' ? 4 : 2);
+        });
+        
+        // Generate QR code with wallet address
+        const walletAddress = '1A1z7agoat2PqeD4Py9c19SNRWBDvp7oXW'; // Demo address
+        generateQRCode(walletAddress, 'qr-code');
+        
+        // Update payment info text
+        document.querySelectorAll('.crypto-symbol-display').forEach(el => {
+          el.textContent = document.querySelector(`[data-crypto="${cryptoId}"]`)?.dataset.symbol || '₿ BTC';
+        });
+      }
+
+      // Fetch crypto prices for conversion
+      async function fetchCheckoutPrices() {
+        try {
+          const endpoint = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,litecoin&vs_currencies=zar';
+          const res = await fetch(endpoint);
+          if (!res.ok) return;
+          const data = await res.json();
+          
+          Object.keys(PRICES_ZAR).forEach(coin => {
+            PRICES_ZAR[coin] = data[coin]?.zar;
+          });
+        } catch(err) {
+          console.error('Failed to fetch checkout prices', err);
+        }
+      }
+
+      // Payment method switcher
+      document.querySelectorAll('.payment-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.payment-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.payment-section').forEach(s => s.style.display = 'none');
+          
+          btn.classList.add('active');
+          const method = btn.dataset.method;
+          const sectionEl = document.getElementById(`${method}-payment`);
+          if (sectionEl) sectionEl.style.display = 'block';
+          
+          if (method === 'crypto') startTimer();
+        });
+      });
+
+      // Crypto currency selector
+      document.querySelectorAll('.crypto-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.crypto-option').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          updateCryptoAmount(btn.dataset.crypto);
+        });
+      });
+
+      // Copy wallet address
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const address = document.querySelector('.wallet-address').textContent;
+          navigator.clipboard.writeText(address).then(() => {
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Copied';
+            setTimeout(() => {
+              btn.textContent = originalText;
+            }, 2000);
+          });
+        });
+      });
+
+      // Initialize
+      fetchCheckoutPrices();
+      updateCryptoAmount('bitcoin');
+      startTimer();
+      
+      // Refresh prices every minute
+      setInterval(fetchCheckoutPrices, 60000);
     })();
 
     // Toggle game panel (play while you order)
