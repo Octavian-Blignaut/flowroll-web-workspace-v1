@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maximillian Jiu-Jitsu | Premium Grappling Apparel Shop</title>
+  <style>
+    :root {
+      --primary: #c41e3a;
+      --primary-dark: #a01830;
+      --text: #1a1a1a;
+      --text-light: #666;
+      --bg: #fafafa;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .brand span {
+      color: var(--text);
+    }
+
+    .pill {
+      background: rgba(196, 30, 58, 0.1);
+      color: var(--primary);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links .btn {
+      background: var(--primary);
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: 6px;
+      display: inline-flex;
+    }
+
+    .nav-links .btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Products Section */
+    .products {
+      margin: 60px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin: 40px 0 30px;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      background: rgba(196, 30, 58, 0.1);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .product-desc {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin: 0 0 12px;
+    }
+
+    .product-price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 12px 0;
+    }
+
+    .add-btn {
+      width: 100%;
+      background: var(--primary);
+      color: var(--white);
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .add-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Sizing Guide */
+    .sizing-guide {
+      background: var(--white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      margin: 60px 0;
+    }
+
+    .sizing-tables {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .sizing-table {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    table th {
+      background: rgba(196, 30, 58, 0.1);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Community Section */
+    .community {
+      background: var(--white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      margin: 60px 0;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .testimonial {
+      background: rgba(196, 30, 58, 0.05);
+      padding: 24px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .testimonial-role {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Values Section */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .value-item {
+      text-align: center;
+      padding: 20px;
+      background: rgba(196, 30, 58, 0.05);
+      border-radius: 8px;
+    }
+
+    .value-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .value-name {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .value-desc {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text);
+      color: var(--white);
+      padding: 40px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sizing-tables {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <div class="brand">
+        <div style="display:inline-block; line-height:1">Maximillian <span>Jiujitsu</span></div>
+      </div>
+      <div class="pill">Digital design &amp; creative strategy</div>
+      <div class="nav-links">
+        <a href="#products">Shop</a>
+        <a href="#sizing">Sizing</a>
+        <a href="#community">Community</a>
+        <a href="#contact" class="btn">Free Trial</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Products Section -->
+    <section class="products" id="products">
+      <h2 class="section-title">🛍️ Premium Grappling Gear</h2>
+      
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image">🥋</div>
+          <div class="product-info">
+            <div class="product-tags">
+              <span class="tag">Gi</span>
+              <span class="tag">Premium</span>
+            </div>
+            <h3 class="product-name">Classic White Gi</h3>
+            <p class="product-desc">Competition-grade white gi with reinforced stitching and Maximillian embroidery. Perfect for training and competition.</p>
+            <div class="product-price">ZAR 1,299</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🥋</div>
+          <div class="product-info">
+            <div class="product-tags">
+              <span class="tag">Gi</span>
+              <span class="tag">Premium</span>
+            </div>
+            <h3 class="product-name">Midnight Black Gi</h3>
+            <p class="product-desc">Sleek black gi with enhanced durability. Ideal for advanced practitioners and competition rounds.</p>
+            <div class="product-price">ZAR 1,299</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">👕</div>
+          <div class="product-info">
+            <div class="product-tags">
+              <span class="tag">Rashguard</span>
+              <span class="tag">Long Sleeve</span>
+            </div>
+            <h3 class="product-name">Red Long Sleeve Rashguard</h3>
+            <p class="product-desc">Anti-microbial long sleeve rashguard with Maximillian branding. Moisture-wicking for intense no-gi sessions.</p>
+            <div class="product-price">ZAR 599</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🧥</div>
+          <div class="product-info">
+            <div class="product-tags">
+              <span class="tag">Hoodie</span>
+              <span class="tag">Team Gear</span>
+            </div>
+            <h3 class="product-name">Maximillian Team Hoodie</h3>
+            <p class="product-desc">Comfortable team hoodie for warm-ups, casual training, and school wear. Show your Maximillian pride.</p>
+            <div class="product-price">ZAR 749</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🩳</div>
+          <div class="product-info">
+            <div class="product-tags">
+              <span class="tag">Shorts</span>
+              <span class="tag">Training</span>
+            </div>
+            <h3 class="product-name">Training Shorts</h3>
+            <p class="product-desc">Lightweight shorts for no-gi training. Quick-dry material and comfortable fit for all body types.</p>
+            <div class="product-price">ZAR 399</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🎒</div>
+          <div class="product-info">
+            <div class="product-tags">
+              <span class="tag">Accessories</span>
+              <span class="tag">Essentials</span>
+            </div>
+            <h3 class="product-name">Maximillian Belt Bag</h3>
+            <p class="product-desc">Compact gear bag perfect for carrying your belt, straps, and training essentials to the academy.</p>
+            <div class="product-price">ZAR 349</div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sizing Guide -->
+    <section class="sizing-guide" id="sizing">
+      <h2 class="section-title">📏 Sizing Guides</h2>
+      <p style="color: var(--text-light); margin-bottom: 20px;">Find your perfect fit for gi's and rashguards using our comprehensive sizing charts.</p>
+      
+      <div class="sizing-tables">
+        <div class="sizing-table">
+          <h3>Gi Sizes</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>A0</td>
+                <td>150-160cm</td>
+                <td>50-60kg</td>
+                <td>Kids & Small Adults</td>
+              </tr>
+              <tr>
+                <td>A1</td>
+                <td>160-170cm</td>
+                <td>60-75kg</td>
+                <td>Small/Medium</td>
+              </tr>
+              <tr>
+                <td>A2</td>
+                <td>170-180cm</td>
+                <td>75-90kg</td>
+                <td>Medium/Large</td>
+              </tr>
+              <tr>
+                <td>A3</td>
+                <td>180-190cm</td>
+                <td>90-105kg</td>
+                <td>Large</td>
+              </tr>
+              <tr>
+                <td>A4</td>
+                <td>190cm+</td>
+                <td>105kg+</td>
+                <td>Extra Large</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sizing-table">
+          <h3>Rashguard Sizes</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Chest</th>
+                <th>Length</th>
+                <th>Fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>XS</td>
+                <td>80-85cm</td>
+                <td>65cm</td>
+                <td>Slim</td>
+              </tr>
+              <tr>
+                <td>S</td>
+                <td>85-95cm</td>
+                <td>68cm</td>
+                <td>Athletic</td>
+              </tr>
+              <tr>
+                <td>M</td>
+                <td>95-105cm</td>
+                <td>71cm</td>
+                <td>Regular</td>
+              </tr>
+              <tr>
+                <td>L</td>
+                <td>105-115cm</td>
+                <td>74cm</td>
+                <td>Athletic+</td>
+              </tr>
+              <tr>
+                <td>XL</td>
+                <td>115cm+</td>
+                <td>77cm</td>
+                <td>Large</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+      <h2 class="section-title">🤝 Our Maximillian Community</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px;">Join a welcoming community of grapplers dedicated to strength, fitness, confidence, self-defense, competition, and genuine friendships both on and off the mat.</p>
+      
+      <div class="testimonials">
+        <div class="testimonial">
+          <div class="testimonial-text">"Maximillian stands out among the schools I have trained at. It has a great vibe, friendly people and great quality Jiu Jitsu Instruction. Perfect for a beginner or someone more advanced. Maximillian has become my home and the friendships I have made are priceless!"</div>
+          <div class="testimonial-author">Zane M</div>
+          <div class="testimonial-role">BJJ Practitioner</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-text">"Maximillian Jiu Jitsu has been amazing for my son's development and self confidence. The coaches are able to instill good ethics like discipline and perseverance while still keeping it fun and approachable for younger children."</div>
+          <div class="testimonial-author">Colin W</div>
+          <div class="testimonial-role">Parent</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-text">"One of the best workouts of my life! Jiu Jitsu develops both cardio and strength while building genuine friendships with people from all walks of life."</div>
+          <div class="testimonial-author">Our Members</div>
+          <div class="testimonial-role">Maximillian Community</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px; text-align: center; font-size: 1.3rem;">Why Choose Our Community?</h3>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-icon">💪</div>
+          <div class="value-name">Strength & Fitness</div>
+          <div class="value-desc">One of the best workouts, developing both cardio and strength</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">😄</div>
+          <div class="value-name">Fun & Enjoyment</div>
+          <div class="value-desc">Learn creative techniques in a fun, welcoming environment</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🌟</div>
+          <div class="value-name">Confidence</div>
+          <div class="value-desc">Build self-esteem through challenges and personal growth</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🛡️</div>
+          <div class="value-name">Self-Defense</div>
+          <div class="value-desc">Practical skills honed through live sparring with others</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🏅</div>
+          <div class="value-name">Competition</div>
+          <div class="value-desc">Grow as an individual through competitive opportunities</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">👥</div>
+          <div class="value-name">Community</div>
+          <div class="value-desc">Foster genuine friendships both on and off the mat</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <h3 style="margin-top: 0;">Maximillian Jiu-Jitsu</h3>
+      <p>Premium grappling apparel for the Maximillian community in Table View, Cape Town</p>
+      
+      <div style="margin: 30px 0;">
+        <p>📍 <strong>Table View, Cape Town</strong></p>
+        <p>🌐 <a href="https://maxjj.co.za" target="_blank">Visit Maximillian Jiu-Jitsu</a></p>
+        <p>✉️ <a href="mailto:shop@maxjj.co.za">shop@maxjj.co.za</a></p>
+      </div>
+
+      <p style="opacity: 0.8; margin-bottom: 0;">© 2026 Maximillian Jiu-Jitsu. All rights reserved. | Officially Licensed Grappling Gear</p>
+    </div>
+  </footer>
+</body>
+</html>
